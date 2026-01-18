@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About Us",
+    "contact": "Contact",
+    "book": "Book Appointment",
+    "emergency": "Emergency: 108"
+  },
+  "hero": {
+    "title1": "Advanced Care for",
+    "title2": "Trauma & Sport Injuries",
+    "subtitle": "Restoring movement and quality of life with world-class orthopedic care and state-of-the-art rehabilitation facilities.",
+    "cta_services": "Our Services",
+    "cta_book": "Book a Doctor"
+  },
+  "services": {
+    "title": "Specialized Treatments",
+    "trauma": "Trauma Surgery",
+    "trauma_desc": "Expert surgical care for complex fractures and critical injuries.",
+    "sport": "Sport Injuries",
+    "sport_desc": "Comprehensive management of ligament tears, dislocations, and sports rehab.",
+    "fracture": "Fracture Management",
+    "fracture_desc": "Advanced casting and fixation techniques for rapid bone healing.",
+    "physio": "Physiotherapy",
+    "physio_desc": "Customized rehabilitation programs to restore strength and mobility.",
+    "arthro": "Arthroscopy",
+    "arthro_desc": "Minimally invasive keyhole surgery for joint problems.",
+    "emergency": "24/7 Emergency",
+    "emergency_desc": "Round-the-clock availability for orthopedic emergencies."
+  },
+  "about": {
+    "title": "Why Choose Us",
+    "exp": "World-Class Expertise",
+    "exp_desc": "Led by Dr. Hemant, combining decades of experience with cutting-edge technology.",
+    "tech": "Advanced Technology",
+    "tech_desc": "Specializing in minimally invasive surgeries and latest medical advancements.",
+    "care": "Personalized Care",
+    "care_desc": "Tailored rehabilitation plans for athletes and active individuals."
+  },
+  "appointment": {
+    "title": "Book an Appointment",
+    "subtitle": "Schedule a consultation with our specialists.",
+    "step1_btn": "Next Step",
+    "step2_btn": "Confirm Appointment",
+    "success": "Appointment Confirmed!",
+    "success_msg": "Our team will contact you to confirm the doctor's availability.",
+    "home_timer": "Back to Home in",
+    "btn_home": "Home",
+    "btn_directions": "Get Directions",
+    "btn_call": "Call Clinic",
+    "labels": {
+       "name": "Patient Name",
+       "mobile": "Mobile Number",
+       "email": "Email (Optional)",
+       "message": "Symptoms / Message"
+    },
+    "errors": {
+        "mobile": "Please enter a valid 10-digit mobile number.",
+        "email": "Please enter a valid email address."
+    }
+  },
+  "footer": {
+    "copy": "2026 Hemant Trauma and Sport Injury Centre. All rights reserved.",
+    "address": "Sector 12, Main Road, City, State"
+  }
+}
