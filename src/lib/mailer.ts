@@ -24,7 +24,7 @@ export async function sendEmail(to: string, subject: string, html: string) {
 
   try {
     const info = await transporter.sendMail({
-      from: `"Hemant Trauma Centre" <${process.env.MAIL_FROM}>`,
+      from: `"Hemant Trauma and Sport Injury Centre" <${process.env.MAIL_FROM}>`,
       to,
       subject,
       html,

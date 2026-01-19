@@ -56,7 +56,7 @@ export const EmailTemplate = (leads: { name: string; mobile: string; message: st
       
       <!-- Header -->
       <div style="text-align: center; margin-bottom: 24px; background-color: #ffffff; padding: 20px; border-radius: 8px; border-bottom: 3px solid #2563eb;">
-        <h1 style="color: #0f172a; margin: 0; font-size: 24px; letter-spacing: -0.5px;">Hemant Trauma Centre</h1>
+        <h1 style="color: #0f172a; margin: 0; font-size: 24px; letter-spacing: -0.5px;">Hemant Trauma and Sport Injury Centre</h1>
         <p style="color: #64748b; margin: 8px 0 16px; font-size: 15px;">New Patient Request${count > 1 ? 's' : ''}</p>
         
         <a href="${process.env.NEXT_PUBLIC_BASE_URL}/admin" style="display: inline-block; padding: 10px 24px; background-color: #2563eb; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">
@@ -77,7 +77,7 @@ export const EmailTemplate = (leads: { name: string; mobile: string; message: st
       <!-- Footer Info -->
       <div style="margin-top: 32px; text-align: center; color: #94a3b8; font-size: 12px; border-top: 1px solid #e2e8f0; padding-top: 16px;">
         <p>This is an automated priority notification.</p>
-        <p style="margin-top: 4px;">&copy; ${new Date().getFullYear()} Hemant Trauma Centre</p>
+        <p style="margin-top: 4px;">&copy; ${new Date().getFullYear()} Hemant Trauma and Sport Injury Centre</p>
       </div>
       
     </div>

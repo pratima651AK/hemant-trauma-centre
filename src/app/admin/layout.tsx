@@ -2,7 +2,7 @@ import NextAuthSessionProvider from '@/components/SessionProvider';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Admin Portal | Hemant Trauma Centre',
+  title: 'Admin Portal | Hemant Trauma and Sport Injury Centre',
   description: 'Secure admin access only',
 };
 
