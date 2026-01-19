@@ -34,16 +34,26 @@ export default function Footer() {
               <h4 className="font-bold text-slate-900">Address</h4>
               <div className="flex items-start justify-center md:justify-start gap-3">
                  <MapPin size={18} className="text-primary mt-1" />
-                 <span>Primary Location Address Line 1,<br />City, State - PIN (Placeholder)</span>
+                 <span>Tilkamanjhi Thana Road,<br />Opposite Sheela Chamber Hotel,<br />Tulsingar Colony, Bhagalpur, Bihar 812001</span>
               </div>
            </div>
 
            <div className="space-y-4">
               <h4 className="font-bold text-slate-900">Location</h4>
-              <a href="#" className="flex items-center justify-center md:justify-start gap-3 text-primary hover:underline">
-                 <Map size={18} />
-                 <span>View on Google Maps</span>
-              </a>
+              <div className="space-y-3">
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=Hemant+Trauma+and+Sport+Injury+Centre+Bhagalpur" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center md:justify-start gap-3 text-primary hover:underline"
+                >
+                   <Map size={18} />
+                   <span>View on Google Maps</span>
+                </a>
+                <div className="text-xs text-slate-400 mt-2">
+                  Plus Code: 7232+CJ Bhagalpur
+                </div>
+              </div>
            </div>
         </div>
 
