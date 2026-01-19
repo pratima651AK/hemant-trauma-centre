@@ -15,6 +15,10 @@ const images = [
   {
     src: '/assets/hero_slider_3.png',
     alt: 'Patient Care Services'
+  },
+  {
+    src: '/assets/hero_slider_4.png',
+    alt: 'Expert Medical Consultation'
   }
 ];
 
