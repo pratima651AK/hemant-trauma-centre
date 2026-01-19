@@ -33,9 +33,9 @@ export default function Header() {
              <li><a href="#about" className="hover:text-primary transition">{t('nav.about')}</a></li>
           </ul>
           <div className="flex items-center gap-4">
-             <div className="hidden lg:block text-red-400 font-bold animate-pulse">
+             {/* <div className="hidden lg:block text-red-400 font-bold animate-pulse">
                 {t('nav.emergency')}
-             </div>
+             </div> */}
             <button onClick={toggleLang} className="text-sm font-semibold text-primary border border-primary/30 px-3 py-1 rounded hover:bg-primary/10 transition">
               {language === 'en' ? 'हिंदी' : 'En'}
             </button>
@@ -62,7 +62,7 @@ export default function Header() {
            <a href="#home" className="text-slate-600 hover:text-primary" onClick={() => setIsOpen(false)}>{t('nav.home')}</a>
            <a href="#services" className="text-slate-600 hover:text-primary" onClick={() => setIsOpen(false)}>{t('nav.services')}</a>
            <a href="#about" className="text-slate-600 hover:text-primary" onClick={() => setIsOpen(false)}>{t('nav.about')}</a>
-           <div className="text-red-400 font-bold py-2 border-t border-slate-100">{t('nav.emergency')}</div>
+           {/* <div className="text-red-400 font-bold py-2 border-t border-slate-100">{t('nav.emergency')}</div> */}
            <a href="#appointment" className="text-primary font-semibold" onClick={() => setIsOpen(false)}>{t('nav.book')}</a>
         </div>
       )}
