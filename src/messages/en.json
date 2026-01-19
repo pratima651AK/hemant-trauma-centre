@@ -32,7 +32,7 @@
   "about": {
     "title": "Why Choose Us",
     "exp": "World-Class Expertise",
-    "exp_desc": "Led by Dr. Hemant, combining decades of experience with cutting-edge technology.",
+    "exp_desc": "Led by Dr. Himanshu Kumar Hemant, combining decades of experience with cutting-edge technology.",
     "tech": "Advanced Technology",
     "tech_desc": "Specializing in minimally invasive surgeries and latest medical advancements.",
     "care": "Personalized Care",
@@ -50,18 +50,18 @@
     "btn_directions": "Get Directions",
     "btn_call": "Call Clinic",
     "labels": {
-       "name": "Patient Name",
-       "mobile": "Mobile Number",
-       "email": "Email (Optional)",
-       "message": "Symptoms / Message"
+      "name": "Patient Name",
+      "mobile": "Mobile Number",
+      "email": "Email (Optional)",
+      "message": "Symptoms / Message"
     },
     "errors": {
-        "mobile": "Please enter a valid 10-digit mobile number.",
-        "email": "Please enter a valid email address."
+      "mobile": "Please enter a valid 10-digit mobile number.",
+      "email": "Please enter a valid email address."
     }
   },
   "footer": {
     "copy": "2026 Hemant Trauma and Sport Injury Centre. All rights reserved.",
-    "address": "Sector 12, Main Road, City, State"
+    "address": "Hemant Trauma & Sport Injury Centre, Tilkamanjhi Thana Road, Beside Tilkamanjhi Thana, Bhagalpur, Bihar 812001"
   }
 }
