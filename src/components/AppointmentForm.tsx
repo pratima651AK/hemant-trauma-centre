@@ -178,7 +178,7 @@ export default function AppointmentForm() {
             <Home size={20} /> {t('appointment.btn_home')}
           </a>
           <a 
-            href="https://www.google.com/maps?q=Hemant+Trauma+Centre" 
+            href="https://www.google.com/maps/dir/?api=1&destination=25.2536,87.0019&destination_place_id=7232%2BCJ+Bhagalpur" 
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 bg-primary text-white font-bold py-4 rounded-xl hover:shadow-lg transition-all"
