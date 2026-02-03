@@ -9,7 +9,12 @@ export async function POST(request: Request) {
     const nameToSave = name?.trim().toLowerCase();
     const emailToSave = email?.trim().toLowerCase() || null;
     const mobileToSave = mobile?.replace(/\D/g, '').slice(-10);
-    const messageToSave = message?.trim() || null;
+    
+    // Normalize and limit message
+    let messageToSave = message?.replace(/[ \t]+/g, ' ').replace(/\n+/g, '\n').trim() || null;
+    if (messageToSave && messageToSave.length > 2000) {
+      return NextResponse.json({ error: 'Message exceeds 2000 characters' }, { status: 400 });
+    }
 
     if (!nameToSave || !mobileToSave) {
       return NextResponse.json(
@@ -49,7 +54,12 @@ export async function PATCH(request: Request) {
     const { id, email, message } = body;
 
     const emailToSave = email?.trim().toLowerCase() || null;
-    const messageToSave = message?.trim() || null;
+    
+    // Normalize and limit message
+    let messageToSave = message?.replace(/[ \t]+/g, ' ').replace(/\n+/g, '\n').trim() || null;
+    if (messageToSave && messageToSave.length > 2000) {
+       return NextResponse.json({ error: 'Message exceeds 2000 characters' }, { status: 400 });
+    }
 
     if (!id) {
       return NextResponse.json({ error: 'Lead ID is required for update' }, { status: 400 });

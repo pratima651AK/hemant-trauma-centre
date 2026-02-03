@@ -94,9 +94,10 @@ export default function AppointmentForm() {
         const method = leadId ? 'PATCH' : 'POST';
         const url = '/api/appointments'; // Always use the public appointments endpoint
         
+        const normalizeText = (text: string) => text.replace(/[ \t]+/g, ' ').replace(/\n+/g, '\n').trim();
         const payload = leadId 
-          ? { id: leadId, email: formData.email, message: formData.message }
-          : formData;
+          ? { id: leadId, email: formData.email, message: normalizeText(formData.message) }
+          : { ...formData, message: normalizeText(formData.message) };
 
         const response = await fetch(url, {
           method,
@@ -130,7 +131,7 @@ export default function AppointmentForm() {
         return;
       }
       if (name === 'email' && value.length > 100) return;
-      if (name === 'message' && value.length > 500) return;
+      if (name === 'message' && value.length > 2000) return;
 
       setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -304,14 +305,33 @@ export default function AppointmentForm() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-2">{t('appointment.labels.message')}</label>
+                  <div className="flex justify-between items-center mb-2">
+                    <label className="block text-sm font-bold text-slate-700">{t('appointment.labels.message')}</label>
+                    <span 
+                      className={`text-xs font-medium transition-colors ${
+                        formData.message.length >= 2000 ? 'text-red-500 animate-pulse' : 
+                        formData.message.length >= 1800 ? 'text-orange-500' : 'text-slate-400'
+                      }`}
+                    >
+                      {formData.message.length}/2000
+                    </span>
+                  </div>
                   <textarea 
                     rows={3}
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full bg-white border-slate-300 text-slate-900 focus:border-primary shadow-sm border-2 rounded-lg p-3 outline-none transition-all duration-300 placeholder:text-slate-400"
+                    className={`w-full bg-white border-2 rounded-lg p-3 outline-none transition-all duration-300 placeholder:text-slate-400 ${
+                      formData.message.length >= 2000 
+                        ? 'border-red-300 focus:border-red-500 bg-red-50' 
+                        : 'border-slate-300 text-slate-900 focus:border-primary'
+                    }`}
                   ></textarea>
+                  {formData.message.length >= 2000 && (
+                    <p className="text-xs text-red-500 mt-1 font-medium">
+                      Maximum character limit reached.
+                    </p>
+                  )}
                 </div>
                 <button 
                   onClick={handleSubmit} 
