@@ -12,7 +12,7 @@ export default function ThemeWrapper({ children, fontClass }: { children: React.
   const isAdmin = pathname?.startsWith('/admin');
 
   return (
-    <body 
+    <body
       className={`${fontClass} ${themeClasses} antialiased transition-colors duration-300 relative`}
       suppressHydrationWarning
     >
