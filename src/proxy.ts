@@ -11,7 +11,7 @@ interface RateLimitData {
   lastReset: number;
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const response = NextResponse.next();
   const ip = (request as any).ip || '127.0.0.1';
 
