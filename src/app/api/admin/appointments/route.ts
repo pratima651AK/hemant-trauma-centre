@@ -77,3 +77,32 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+
+    if (!id) {
+      return NextResponse.json({ error: 'ID is required' }, { status: 400 });
+    }
+
+    // Soft Delete: Set is_deleted = TRUE
+    const query = 'UPDATE appointments SET is_deleted = TRUE WHERE id = $1 RETURNING id';
+    const result = await pool.query(query, [id]);
+
+    if (result.rowCount === 0) {
+      return NextResponse.json({ error: 'Record not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: 'Deleted successfully', id });
+  } catch (error) {
+    console.error('Delete error:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}

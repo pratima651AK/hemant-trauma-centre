@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
+import { verifyTurnstileToken } from '@/lib/turnstile';
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, mobile, email, message } = body;
+    const { name, mobile, email, message, turnstileToken } = body;
 
     const nameToSave = name?.trim().toLowerCase();
     const emailToSave = email?.trim().toLowerCase() || null;
@@ -14,6 +15,11 @@ export async function POST(request: Request) {
     let messageToSave = message?.replace(/[ \t]+/g, ' ').replace(/\n+/g, '\n').trim() || null;
     if (messageToSave && messageToSave.length > 2000) {
       return NextResponse.json({ error: 'Message exceeds 2000 characters' }, { status: 400 });
+    }
+
+    // Security Check: If message is present (Step 2), require Turnstile
+    if (messageToSave && !(await verifyTurnstileToken(turnstileToken))) {
+      return NextResponse.json({ error: 'Security check failed' }, { status: 400 });
     }
 
     if (!nameToSave || !mobileToSave) {
@@ -51,7 +57,11 @@ export async function POST(request: Request) {
 export async function PATCH(request: Request) {
   try {
     const body = await request.json();
-    const { id, email, message } = body;
+    const { id, email, message, turnstileToken } = body;
+
+    if (!(await verifyTurnstileToken(turnstileToken))) {
+      return NextResponse.json({ error: 'Security check failed' }, { status: 400 });
+    }
 
     const emailToSave = email?.trim().toLowerCase() || null;
     

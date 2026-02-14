@@ -31,6 +31,10 @@ export default function AdminDashboard() {
   // Search and Filter State
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState<FilterStatus>('all');
+  
+  // Secret Delete Mode State
+  const [isDeleteEnabled, setIsDeleteEnabled] = useState(false);
+  const pressTimer = React.useRef<NodeJS.Timeout | null>(null);
 
   // Ref to track latest appointments for polling closure
   const appointmentsRef = React.useRef(appointments);
@@ -168,6 +172,63 @@ export default function AdminDashboard() {
     }
   };
 
+  const deleteAppointment = async (id: number) => {
+    if (!confirm('Are you sure you want to delete this appointment? This action cannot be undone.')) return;
+
+    try {
+      const response = await fetch(`/api/admin/appointments?id=${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY || '' 
+        }
+      });
+
+      if (response.ok) {
+        setAppointments(prev => prev.filter(a => a.id !== id));
+      } else {
+        alert('Failed to delete appointment');
+      }
+    } catch (err) {
+      console.error('Delete failed', err);
+      alert('Delete failed');
+    }
+  };
+
+  const archiveAppointments = async () => {
+    if (!confirm('Are you sure you want to permanently archive all deleted appointments?')) return;
+
+    try {
+      const response = await fetch('/api/admin/archive', {
+        method: 'POST',
+        headers: {
+            'Authorization': process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY || '' 
+        }
+      });
+      
+      const data = await response.json();
+      if (response.ok) {
+        alert(`Successfully archived ${data.count} appointments.`);
+      } else {
+        alert('Archive failed: ' + data.error);
+      }
+    } catch (err) {
+      console.error('Archive failed', err);
+      alert('Archive connection failed');
+    }
+  };
+
+  const handleLogoPressStart = () => {
+    pressTimer.current = setTimeout(() => {
+      setIsDeleteEnabled(prev => !prev);
+    }, 5000); // 5 seconds long press
+  };
+
+  const handleLogoPressEnd = () => {
+    if (pressTimer.current) {
+      clearTimeout(pressTimer.current);
+    }
+  };
+
   // Filter and Search Logic
   const filteredAppointments = useMemo(() => {
     return appointments.filter(app => {
@@ -260,7 +321,24 @@ export default function AdminDashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex justify-between items-center mb-4">
             <div>
-              <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">ADMIN DASHBOARD</h1>
+              <div 
+                className="flex items-center gap-2 mb-2 select-none cursor-pointer active:scale-95 transition-transform"
+                onMouseDown={handleLogoPressStart}
+                onMouseUp={handleLogoPressEnd}
+                onMouseLeave={handleLogoPressEnd}
+                onTouchStart={handleLogoPressStart}
+                onTouchEnd={handleLogoPressEnd}
+                onDoubleClick={() => setIsDeleteEnabled(prev => !prev)}
+                title="Double click or hold for 5s to toggle admin mode"
+              >
+                  <div className="w-8 h-8 bg-red-500 rounded flex items-center justify-center text-white font-bold text-lg">+</div>
+                  <div className="text-xl font-bold text-slate-900 leading-none">
+                    Hemant <span className="text-primary">Trauma Centre</span>
+                  </div>
+              </div>
+              <h1 className={`text-xl sm:text-2xl font-black tracking-tight transition-colors ${isDeleteEnabled ? 'text-red-600 animate-pulse' : 'text-slate-900'}`}>
+                ADMIN DASHBOARD
+              </h1>
               <div className="flex items-center gap-2 mt-0.5">
                 <span className={`flex h-2 w-2 rounded-full ${isRefreshing ? 'bg-blue-500 scale-125' : 'bg-green-500'} transition-all duration-300 animate-pulse`} />
                 <p className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest leading-none">
@@ -343,6 +421,18 @@ export default function AdminDashboard() {
         </div>
       </div>
 
+      {isDeleteEnabled && (
+        <div className="sticky top-[89px] z-20 bg-red-600 text-white text-center py-2 font-bold text-sm uppercase tracking-widest animate-in slide-in-from-top flex items-center justify-center gap-4">
+          <span>⚠ Deletion Mode Active</span>
+          <button 
+            onClick={archiveAppointments}
+            className="bg-white text-red-600 px-3 py-1 rounded text-xs font-black hover:bg-slate-100 transition shadow-sm"
+          >
+            ARCHIVE TRASH
+          </button>
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         {/* Responsive Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -376,6 +466,11 @@ export default function AdminDashboard() {
               borderAccent = "border-l-[6px] border-green-500";
             }
 
+            if (isDeleteEnabled) {
+               statusStyles = "border-orange-500 shadow-[8px_8px_0px_0px_rgba(249,115,22,0.2)] hover:shadow-[12px_12px_0px_0px_rgba(249,115,22,0.3)]";
+               borderAccent = "border-l-[6px] border-orange-500";
+            }
+
             return (
               <div 
                 key={app.id} 
@@ -406,7 +501,7 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Contact Actions */}
-                <div className="flex border-y-2 border-black divide-x-2 divide-black bg-white">
+                <div className="flex border-y-2 border-black divide-x-2 divide-black bg-white relative">
                   <a 
                     href={`tel:${app.mobile}`}
                     className="flex-1 flex flex-col items-center justify-center gap-2 py-4 hover:bg-red-50 transition-colors text-slate-900 font-black"
@@ -423,6 +518,15 @@ export default function AdminDashboard() {
                     <MessageCircle className="w-5 h-5 text-green-500" />
                     <span className="text-[10px] uppercase tracking-widest">WhatsApp</span>
                   </a>
+                  {isDeleteEnabled && (
+                    <button
+                      onClick={() => deleteAppointment(app.id)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-red-600 text-white p-3 rounded-full shadow-xl hover:bg-red-700 transition hover:scale-110 active:scale-95"
+                      title="Delete Appointment"
+                    >
+                      <LogOut className="w-8 h-8" />
+                    </button>
+                  )}
                 </div>
 
                 {/* Message Body */}

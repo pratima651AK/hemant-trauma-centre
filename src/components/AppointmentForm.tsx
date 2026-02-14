@@ -3,12 +3,14 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { CheckCircle, XCircle, Home, MapPin, Phone as PhoneIcon, RotateCcw } from 'lucide-react';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 interface FormData {
   name: string;
   mobile: string;
   email: string;
   message: string;
+  turnstileToken?: string;
 }
 
 export default function AppointmentForm() {
@@ -19,7 +21,8 @@ export default function AppointmentForm() {
     name: '',
     mobile: '',
     email: '',
-    message: ''
+    message: '',
+    turnstileToken: ''
   });
   const [error, setError] = useState<string>('');
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
@@ -48,6 +51,14 @@ export default function AppointmentForm() {
       return false;
     }
     setError('');
+    return true;
+  };
+
+  const validateTurnstile = () => {
+    if (!formData.turnstileToken) {
+      setError("Please complete the security check");
+      return false;
+    }
     return true;
   };
 
@@ -86,7 +97,8 @@ export default function AppointmentForm() {
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (validateStep2()) {
+    e.preventDefault();
+    if (validateStep2() && validateTurnstile()) {
       setIsSavingLead(true);
       setError('');
       try {
@@ -96,7 +108,7 @@ export default function AppointmentForm() {
         
         const normalizeText = (text: string) => text.replace(/[ \t]+/g, ' ').replace(/\n+/g, '\n').trim();
         const payload = leadId 
-          ? { id: leadId, email: formData.email, message: normalizeText(formData.message) }
+          ? { id: leadId, email: formData.email, message: normalizeText(formData.message), turnstileToken: formData.turnstileToken }
           : { ...formData, message: normalizeText(formData.message) };
 
         const response = await fetch(url, {
@@ -151,7 +163,7 @@ export default function AppointmentForm() {
   const handleReset = () => {
     setIsSubmitted(false);
     setStep(1);
-    setFormData({ name: '', mobile: '', email: '', message: '' });
+    setFormData({ name: '', mobile: '', email: '', message: '', turnstileToken: '' });
     setLeadId(null);
     setCountdown(10);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -333,6 +345,16 @@ export default function AppointmentForm() {
                     </p>
                   )}
                 </div>
+                
+              <div className="flex justify-center my-4">
+                  <Turnstile 
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'}
+                    onSuccess={(token) => setFormData(prev => ({ ...prev, turnstileToken: token }))}
+                    onError={() => setError("Security check failed. Please refresh.")}
+                    onExpire={() => setFormData(prev => ({ ...prev, turnstileToken: '' }))}
+                  />
+              </div>
+
                 <button 
                   onClick={handleSubmit} 
                   disabled={isSavingLead}
