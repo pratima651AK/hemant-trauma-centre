@@ -19,23 +19,32 @@ export default function Footer() {
           <div className="space-y-4">
             <h4 className="font-bold text-slate-900">Contact Us</h4>
             <ul className="space-y-3">
-              <li className="flex items-center justify-center md:justify-start gap-3">
-                <Phone size={18} className="text-primary" />
-                <span>9955868599</span>
+              <li>
+                <a href="tel:9955868599" className="flex items-center justify-center md:justify-start gap-3 hover:text-primary transition-colors">
+                  <Phone size={18} className="text-primary" />
+                  <span>9955868599</span>
+                </a>
               </li>
-              <li className="flex items-center justify-center md:justify-start gap-3">
-                <Mail size={18} className="text-primary" />
-                <span>info@hemanttrauma.com (Placeholder)</span>
+              <li>
+                <a href="mailto:info@hemanttrauma.com" className="flex items-center justify-center md:justify-start gap-3 hover:text-primary transition-colors">
+                  <Mail size={18} className="text-primary" />
+                  <span>info@hemanttrauma.com</span>
+                </a>
               </li>
             </ul>
           </div>
 
           <div className="space-y-4">
             <h4 className="font-bold text-slate-900">Address</h4>
-            <div className="flex items-start justify-center md:justify-start gap-3">
+            <a 
+              href="https://www.google.com/maps/search/?api=1&query=Hemant+Trauma+and+Sport+Injury+Centre+Bhagalpur" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-start justify-center md:justify-start gap-3 hover:text-primary transition-colors"
+            >
               <MapPin size={18} className="text-primary mt-1" />
               <span>Tilkamanjhi Thana Road,<br />Opposite Sheela Chamber Hotel,<br />Tulsingar Colony, Bhagalpur, Bihar 812001</span>
-            </div>
+            </a>
           </div>
 
           <div className="space-y-4">

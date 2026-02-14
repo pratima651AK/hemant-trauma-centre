@@ -199,7 +199,7 @@ export default function AppointmentForm() {
             <MapPin size={20} /> {t('appointment.btn_directions')}
           </a>
           <a 
-            href="tel:+918437184452" 
+            href="tel:+919955868599" 
             className="sm:col-span-2 flex items-center justify-center gap-2 bg-green-500 text-white font-bold py-4 rounded-xl hover:shadow-lg transition-all"
           >
             <PhoneIcon size={20} /> {t('appointment.btn_call')}

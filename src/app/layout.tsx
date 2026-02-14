@@ -37,6 +37,8 @@ export default function RootLayout({
       "longitude": "87.0019"
     },
     "openingHours": "Mo-Su 00:00-23:59",
+    "telephone": "+919955868599",
+    "email": "info@hemanttrauma.com",
     "medicalSpecialty": ["Orthopedic", "Surgery", "EmergencyCare"]
   };
 

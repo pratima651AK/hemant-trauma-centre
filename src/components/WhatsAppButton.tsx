@@ -2,7 +2,7 @@ import Image from 'next/image';
 import whatsappIcon from '../assets/whatsapp-3d.svg';
 
 export default function WhatsAppButton() {
-  const phoneNumber = "918437184452"; // Updated to the actual number found in AppointmentForm
+  const phoneNumber = "919955868599"; // Updated to the actual number provided
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
 
   return (
