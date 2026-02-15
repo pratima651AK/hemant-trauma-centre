@@ -18,9 +18,22 @@ export default function Header() {
       <nav className="container mx-auto px-6 flex justify-between items-center">
         <div className="flex items-center gap-4">
            <div className="flex items-center gap-2">
-             <div className="w-8 h-8 bg-red-500 rounded flex items-center justify-center text-white font-bold">+</div>
-             <div className="text-xl md:text-2xl font-bold text-slate-900">
-                Hemant<span className="text-primary">TraumaCentre</span>
+             {/* Custom Logo: Red (+) merging into Bone Joint (H) */}
+            {/* User Provided Logo Image */}
+             <div className="relative w-10 h-10 shrink-0">
+               <img 
+                 src="/logo3.png" 
+                 alt="Hemant Trauma Centre Logo" 
+                 className="w-full h-full object-contain"
+               />
+             </div>
+             {/* User Provided Logo Text Image */}
+             <div className="h-8 md:h-10 w-auto">
+                <img 
+                  src="/logotextonlytemp.png" 
+                  alt="Hemant Trauma Centre" 
+                  className="h-full w-auto object-contain"
+                />
              </div>
            </div>
         </div>

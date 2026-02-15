@@ -1,0 +1,17 @@
+<svg width="400" height="400" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Hemant Trauma Centre Logo">
+  <!-- Background for visibility in viewers (optional) -->
+  <rect width="40" height="40" fill="white" fill-opacity="0.01"/>
+
+  <!-- The Red Plus (Left side of H) -->
+  <path d="M10 8V32" stroke="#EF4444" stroke-width="6" stroke-linecap="round" />
+  <path d="M4 20H20" stroke="#EF4444" stroke-width="6" stroke-linecap="round" />
+  
+  <!-- The Bone Joint (Right side of H) -->
+  <!-- Upper Femur -->
+  <path d="M30 8C33 8 36 10 36 13C36 16 33 18 30 18C28 18 26 17 26 16V24" stroke="#0F172A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Lower Tibia -->
+  <path d="M26 24V32C26 34 28 36 30 36C33 36 36 34 36 31C36 28 33 26 30 26" stroke="#0F172A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Connection (Crossbar extension to right) -->
+  <path d="M18 20H26" stroke="#0F172A" stroke-width="5" stroke-linecap="round" />
+</svg>
