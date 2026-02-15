@@ -348,7 +348,7 @@ export default function AppointmentForm() {
                 
               <div className="flex justify-center my-4">
                   <Turnstile 
-                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'}
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''}
                     onSuccess={(token) => setFormData(prev => ({ ...prev, turnstileToken: token }))}
                     onError={() => setError("Security check failed. Please refresh.")}
                     onExpire={() => setFormData(prev => ({ ...prev, turnstileToken: '' }))}

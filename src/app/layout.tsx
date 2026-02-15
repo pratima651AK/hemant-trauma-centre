@@ -7,8 +7,34 @@ import ThemeWrapper from "@/components/ThemeWrapper";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Hemant Trauma and Sport Injury Centre | Bhagalpur's Premier Orthopedic Care",
-  description: "Specialized Orthopedic and Trauma Care in Bhagalpur. 24/7 Emergency, Spine Surgery, Joint Replacement, and Sports Injury Center.",
+  title: "HemantTraumaCentre | Best Orthopedic Doctor in Bhagalpur",
+  description: "Expert orthopedic care for fractures, sports injuries, and trauma in Bhagalpur. Dr. Himanshu Kumar Hemant provides affordable and advanced bone treatment.",
+  keywords: [
+    "Orthopedic Doctor Bhagalpur", "Fracture Clinic", "Bone Specialist", 
+    "Trauma Centre", "Haddi Doctor", "Plaster Doctor", 
+    "Small Bone Clinic", "Leg Fracture Treatment",
+    "हड्डी का डॉक्टर", "भागलपुर में हड्डी रोग विशेषज्ञ", "टूटी हड्डी का इलाज", "प्लास्टर डॉक्टर",
+    "Haddi Ke Doctor", "Bhagalpur Haddi Hospital", "Kam kharch me ilaj", 
+    "Best fracture doctor", "HemantTraumaCentre"
+  ],
+  authors: [{ name: "Dr. Himanshu Kumar Hemant" }],
+  openGraph: {
+    title: "HemantTraumaCentre | Expert Orthopedic Care in Bhagalpur",
+    description: "Specialized treatment for fractures, sports injuries, and joint problems. Trusted bone doctor in Bhagalpur.",
+    url: "https://hemant-trauma-centre.vercel.app",
+    siteName: "HemantTraumaCentre",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HemantTraumaCentre | Bhagalpur",
+    description: "Expert orthopedic and trauma care in Bhagalpur.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -20,9 +46,9 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "MedicalClinic",
     "name": "Hemant Trauma and Sport Injury Centre",
-    "alternateName": "Hemant Trauma Centre",
+    "alternateName": "HemantTraumaCentre",
     "description": "Expert orthopedic and trauma care in Bhagalpur specializing in spine surgery, joint replacement, and sports injuries.",
-    "url": "https://hemant-trauma-centre.vercel.app", // Adjust if needed
+    "url": "https://hemant-trauma-centre.vercel.app",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Tilkamanjhi Thana Road, Opposite Sheela Chamber Hotel, Tulsinagar Colony",

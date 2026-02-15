@@ -91,7 +91,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-slate-200 text-center">
-          <p className="text-sm">&copy; {t('footer.copy')} | Hemant Trauma and Sport Injury Centre</p>
+          <p className="text-sm">&copy; {new Date().getFullYear()} HemantTraumaCentre. All rights reserved.</p>
         </div>
       </div>
     </footer>

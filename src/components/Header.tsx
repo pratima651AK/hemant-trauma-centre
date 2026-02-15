@@ -20,7 +20,7 @@ export default function Header() {
            <div className="flex items-center gap-2">
              <div className="w-8 h-8 bg-red-500 rounded flex items-center justify-center text-white font-bold">+</div>
              <div className="text-xl md:text-2xl font-bold text-slate-900">
-                Hemant <span className="text-primary">Trauma Centre</span>
+                Hemant<span className="text-primary">TraumaCentre</span>
              </div>
            </div>
         </div>
